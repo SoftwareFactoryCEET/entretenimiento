@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Entretenimiento.WebApplication.Models.Production>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Producción</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-light">
+        <i class="fa fa-plus-circle" aria-hidden="false"></i>&nbsp;Nueva producción
+    </a>
+
+    
+</p>
+<table class="table" id="myTable">
+    <thead class="table-active">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Release)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Release)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="fas fa-edit" style="color:skyblue">&nbsp;&nbsp;</i>
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <i class="fas fa-info-circle" style="color:lightseagreen">&nbsp;&nbsp;</i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="fas fa-trash" style="color:coral">&nbsp;&nbsp;</i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
